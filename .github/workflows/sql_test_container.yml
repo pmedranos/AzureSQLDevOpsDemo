@@ -41,12 +41,12 @@ jobs:
           done
           set -o pipefail -e
           
-      - name: 'Install sqlpackage'
+      - name: Install sqlpackage
         run: |
           curl -L -o sqlpackage.zip https://aka.ms/sqlpackage-linux
           unzip sqlpackage.zip -d sqlpackage
           chmod +x sqlpackage/sqlpackage
-          sudo mv sqlpackage/sqlpackage /usr/local/bin/
+          echo "$(pwd)/sqlpackage" >> $GITHUB_PATH
 
       - name: 'Create and setup database'
         uses: azure/sql-action@v2
